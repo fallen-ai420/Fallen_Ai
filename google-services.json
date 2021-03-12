@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "400250831075",
+    "project_id": "fallenai",
+    "storage_bucket": "fallenai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400250831075:android:321d59a625ee50c12085d6",
+        "android_client_info": {
+          "package_name": "com.example.fallen_ai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400250831075-9dn0ldjou22mf1gu4agt1u73pk2n0j35.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fallen_ai",
+            "certificate_hash": "70c32962dbc67256879b6fa8787d8718db0f151d"
+          }
+        },
+        {
+          "client_id": "400250831075-p92efb6744seqvld4aof028n1ps2tv25.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJ0Ejt7MJEJbPFqyaxRRcBQXdl71nq0AI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "400250831075-p92efb6744seqvld4aof028n1ps2tv25.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Fallen_Ai</string>
+
+    <string-array name="Gender">
+        <item>Select Gender</item>
+        <item>Male</item>
+        <item>Female</item>
+        <item>Not Binary</item>
+    </string-array>
+</resources>

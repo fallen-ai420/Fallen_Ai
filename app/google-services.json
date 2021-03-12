@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "436692527823",
+    "firebase_url": "https://fallen-ai-default-rtdb.firebaseio.com",
+    "project_id": "fallen-ai",
+    "storage_bucket": "fallen-ai.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:436692527823:android:b90e40fe8eac9a39d5e5ba",
+        "android_client_info": {
+          "package_name": "com.example.fallen_ai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "436692527823-i1p3of6qmkocvjiqsj505omnsueuk2db.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fallen_ai",
+            "certificate_hash": "70c32962dbc67256879b6fa8787d8718db0f151d"
+          }
+        },
+        {
+          "client_id": "436692527823-i46pgp77meghs7blsj56qvuckmtcrek0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyq6iW-cHJFdVLY-mJd5Sw0PD8eL2KN1M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "436692527823-i46pgp77meghs7blsj56qvuckmtcrek0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
