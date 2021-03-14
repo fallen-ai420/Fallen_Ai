@@ -2,9 +2,16 @@
     <string name="app_name">Fallen_Ai</string>
 
     <string-array name="Gender">
-        <item>Select Gender</item>
         <item>Male</item>
         <item>Female</item>
-        <item>Not Binary</item>
+        <item>Non-Binary</item>
     </string-array>
+    <string-array name="Preferences">
+        <item>Preferences</item>
+        <item>Interested in Male</item>
+        <item>Interested in Female</item>
+        <item>Interested in Both</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

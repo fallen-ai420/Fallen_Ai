@@ -5,12 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.ims.feature.MmTelFeature;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.fallen_ai.UserModel.Female;
+import com.example.fallen_ai.UserModel.Male;
 import com.example.fallen_ai.databinding.ActivityProfileBinding;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -19,11 +25,12 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     ActivityProfileBinding binding;
     FirebaseAuth mAuth;
@@ -38,38 +45,77 @@ public class ProfileActivity extends AppCompatActivity {
 
         GoogleGso();
         getInstances();
+        GenderSpinner();
 
         String Email = getIntent().getStringExtra("Email");
         binding.etEmail.setText(Email);
 
+//        binding.btnNext.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                String Uid = mAuth.getUid();
+//                String FirstName = binding.etFirstName.getText().toString();
+//                String LastName = binding.etLastName.getText().toString();
+//                String Email = binding.etEmail.getText().toString();
+//                String Gender = binding.genderSpinner.getSelectedItem().toString();
+//
+//                if (Gender.equals("Male")) {
+//                    Male user = new Male(FirstName,LastName,Email,Gender);
+//                    assert Uid != null;
+//                    firebaseFirestore.collection("Users").document("Gender").collection(Gender).document(Uid).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void aVoid) {
+//                            Toast.makeText(ProfileActivity.this, "Uploaded through male class", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//                            Toast.makeText(ProfileActivity.this, "Error", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//                else if (Gender.equals("Female")){
+//                    Female user = new Female(FirstName,LastName,Email,Gender);
+//                    assert Uid != null;
+//                    firebaseFirestore.collection("Users").document("Gender").collection(Gender).document(Uid).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void aVoid) {
+//                            Toast.makeText(ProfileActivity.this, "Uploaded through female class", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//                            Toast.makeText(ProfileActivity.this, "Error", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
+//                }
+//
+////                Map<String, Object> user = new HashMap<>();
+////                user.put("First Name",FirstName);
+////                user.put("Last Name",LastName);
+////                user.put("Email",Email);
+////                user.put("Gender",Gender);
+//
+//                Intent intent = new Intent(ProfileActivity.this,ProfileActivity2.class);
+//                intent.putExtra("Gender",Gender);
+//                startActivity(intent);
+//            }
+//        });
         binding.btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String Uid = mAuth.getUid();
+                String Email = binding.etEmail.getText().toString();
                 String FirstName = binding.etFirstName.getText().toString();
                 String LastName = binding.etLastName.getText().toString();
-                String Email = binding.etEmail.getText().toString();
-
-                Map<String, Object> user = new HashMap<>();
-                user.put("First Name",FirstName);
-                user.put("Last Name",LastName);
-                user.put("Email",Email);
-
-                assert Uid != null;
-                firebaseFirestore.collection("Users").document(Uid).set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(ProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ProfileActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                String Gender = binding.genderSpinner.getSelectedItem().toString();
 
                 Intent intent = new Intent(ProfileActivity.this,ProfileActivity2.class);
+                intent.putExtra("Email",Email);
+                intent.putExtra("FirstName",FirstName);
+                intent.putExtra("LastName",LastName);
+                intent.putExtra("Gender",Gender);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -109,5 +155,30 @@ public class ProfileActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void GenderSpinner() {
+        Spinner Gspinner = findViewById(R.id.genderSpinner);
+        ArrayAdapter<CharSequence> Gadapter = ArrayAdapter.createFromResource(this,
+                R.array.Gender, android.R.layout.simple_spinner_item);
+        Gadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Gspinner.setAdapter(Gadapter);
+        Gspinner.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        if(parent.getItemAtPosition(position).equals("Select Gender"))
+        {
+            Toast.makeText(this, "All fields are Mandatory", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            String Gender = parent.getItemAtPosition(position).toString();
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
